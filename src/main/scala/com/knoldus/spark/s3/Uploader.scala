@@ -6,14 +6,12 @@ import com.amazonaws.services.s3.model.CannedAccessControlList
 import com.amazonaws.services.s3.model.PutObjectRequest
 import com.amazonaws.services.s3.transfer.TransferManager
 
-class Uploader(transferManager: TransferManager) {
+class Uploader(transferManager: TransferManager) extends Serializable {
 
-  def upload(file: File, path: String, bucket: String): Boolean = {
+  def uploadDirectory(file: File, path: String, bucket: String): Boolean = {
     try {
       val transfer = transferManager.uploadDirectory(bucket, path, file, false)
-
       transfer.waitForCompletion()
-
       true
     } catch {
       case ex: Exception => false

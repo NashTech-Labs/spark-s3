@@ -23,13 +23,13 @@ class UploaderTest extends FunSuite with Mockito {
 
   test("upload is successful") {
     when(transferManager.uploadDirectory(any[String], any[String], any[File], any[Boolean])).thenReturn(multipleFileUpload)
-    val result = uploader.upload(file, filePath, bucket)
+    val result = uploader.uploadDirectory(file, filePath, bucket)
     assert(result)
   }
 
   test("upload is not successful") {
     when(transferManager.uploadDirectory(any[String], any[String], any[File], any[Boolean])).thenThrow(new IllegalArgumentException)
-    val result = uploader.upload(file, filePath, bucket)
+    val result = uploader.uploadDirectory(file, filePath, bucket)
     assert(!result)
   }
 
