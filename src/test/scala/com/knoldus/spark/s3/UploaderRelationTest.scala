@@ -2,12 +2,8 @@ package com.knoldus.spark.s3
 
 import java.io.File
 
-import com.amazonaws.auth.BasicAWSCredentials
-import com.amazonaws.services.s3.AmazonS3Client
-import com.amazonaws.services.s3.transfer.TransferManager
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.{SparkConf, SparkContext}
-import org.mockito.Mockito.when
 import org.scalatest.{BeforeAndAfterAll, FunSuite}
 import org.specs2.mock.Mockito
 
