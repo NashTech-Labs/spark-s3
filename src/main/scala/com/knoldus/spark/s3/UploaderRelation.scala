@@ -1,13 +1,19 @@
 package com.knoldus.spark.s3
 
-import org.apache.spark.sql.{DataFrame, SQLContext}
+import org.apache.spark.sql.DataFrame
 
-case class UploaderRelation(fileLocation: String, fileType: String, sqlContext: SQLContext) {
+case class UploaderRelation(fileLocation: String, fileType: String) {
 
-  def upload(dataFrame: DataFrame) =
+  def upload(dataFrame: DataFrame): Boolean = {
     fileType match {
-      case "json" => dataFrame.write.json(fileLocation)
-      case "parquet" => dataFrame.write.parquet(fileLocation)
+      case "json" =>
+        dataFrame.write.json(fileLocation)
+        true
+      case "parquet" =>
+        dataFrame.write.parquet(fileLocation)
+        true
+      case _ => false
     }
+  }
 
 }

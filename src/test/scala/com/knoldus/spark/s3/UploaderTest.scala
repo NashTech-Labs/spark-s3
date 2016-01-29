@@ -16,8 +16,8 @@ class UploaderTest extends FunSuite with Mockito {
   private val amazonS3Client = mock[AmazonS3Client]
   private val multipleFileUpload = mock[MultipleFileUpload]
   private val putObjectResult = mock[PutObjectResult]
-  private val file = new File("src/test/resources/sample.csv")
-  private val filePath = "src/test/resources/sample.csv"
+  private val file = new File("src/test/resources/sample.json")
+  private val filePath = "src/test/resources/sample.json"
   private val bucket = "bucket"
   private val uploader = new Uploader(transferManager)
 
