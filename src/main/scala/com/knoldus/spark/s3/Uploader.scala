@@ -10,7 +10,10 @@ class Uploader(transferManager: TransferManager) {
 
   def upload(file: File, path: String, bucket: String): Boolean = {
     try {
-      transferManager.uploadDirectory(bucket, path, file, false)
+      val transfer = transferManager.uploadDirectory(bucket, path, file, false)
+
+      transfer.waitForCompletion()
+
       true
     } catch {
       case ex: Exception => false
