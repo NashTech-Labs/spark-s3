@@ -30,10 +30,16 @@ class DefaultSource extends RelationProvider with SchemaRelationProvider with Cr
 
   @transient val logger = Logger.getLogger(classOf[DefaultSource])
 
+  /**
+    * Reading files from Amazon S3 is not yet supported.
+    */
   override def createRelation(sqlContext: SQLContext, parameters: Map[String, String]): BaseRelation = {
     createRelation(sqlContext, parameters, null)
   }
 
+  /**
+    * Reading files from Amazon S3 is not yet supported.
+    */
   override def createRelation(sqlContext: SQLContext, parameters: Map[String, String], schema: StructType): BaseRelation = {
     sys.error("Read is not yet supported")
     new BaseRelation {
@@ -42,6 +48,10 @@ class DefaultSource extends RelationProvider with SchemaRelationProvider with Cr
     }
   }
 
+  /**
+    * Creates a new relation for saving data on Amazon S3 with given parameters.
+    * Parameters have to include 'accessKey', 'secretKey', 'bucket', 'fileType' and 'path'
+    */
   override def createRelation(sqlContext: SQLContext, mode: SaveMode, parameters: Map[String, String], data: DataFrame): S3Relation = {
     val accessKey = parameters.getOrElse("accessKey", sys.error("Amazon S3 Access Key has to be provided"))
     val secretKey = parameters.getOrElse("secretKey", sys.error("Amazon S3 Secret Key has to be provided"))

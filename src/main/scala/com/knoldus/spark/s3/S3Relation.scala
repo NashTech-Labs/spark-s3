@@ -20,6 +20,9 @@ import org.apache.spark.sql.sources.BaseRelation
 import org.apache.spark.sql.types.StructType
 import org.apache.spark.sql.{DataFrame, SQLContext}
 
+/**
+  * Abstract relation class for saving data on Amazon S3
+  */
 case class S3Relation(path: String,
                       accessKey: String,
                       secretKey: String,

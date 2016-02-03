@@ -14,7 +14,6 @@ This library requires following options:
 * `bucket`: Amazon S3 Secret Bucket name.
 * `fileType`: Type of the file. Supported types are json and parquet
 
-
 ### Scala API
 Spark 1.4+:
 ```scala
