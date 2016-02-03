@@ -24,7 +24,7 @@ class Uploader(transferManager: TransferManager) extends Serializable {
         temporaryFiles.listFiles().filter(_.getName != "_temporary").map { temporaryFile =>
           temporaryFile.listFiles().map { file =>
             val s3Client = transferManager.getAmazonS3Client
-            s3Client.putObject(new PutObjectRequest(bucket, path + "/" + file.getName, file).withCannedAcl(CannedAccessControlList.PublicRead))
+            s3Client.putObject(new PutObjectRequest(bucket, path + File.separator + file.getName, file).withCannedAcl(CannedAccessControlList.PublicRead))
           }
         }
       }
