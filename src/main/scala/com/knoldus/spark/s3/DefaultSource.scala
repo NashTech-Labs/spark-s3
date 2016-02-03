@@ -26,7 +26,7 @@ import org.apache.spark.sql.sources.{BaseRelation, CreatableRelationProvider, Re
 import org.apache.spark.sql.types.StructType
 import org.apache.spark.sql.{DataFrame, SQLContext, SaveMode}
 
-class DefaultSource extends RelationProvider with SchemaRelationProvider with CreatableRelationProvider{
+class DefaultSource extends RelationProvider with SchemaRelationProvider with CreatableRelationProvider {
 
   @transient val logger = Logger.getLogger(classOf[DefaultSource])
 
@@ -59,9 +59,9 @@ class DefaultSource extends RelationProvider with SchemaRelationProvider with Cr
     val fileType = parameters.getOrElse("fileType", sys.error("File Type has to be provided"))
     val path = parameters.getOrElse("path", sys.error(s"'path' must be specified for $fileType data."))
 
-    val supportedFileTypes = List("json", "parquet")
-    if (!supportedFileTypes.contains(fileType)) {
-      sys.error("fileType " + fileType + " not supported. Supported file types are " + supportedFileTypes)
+    val fileTypesSupported = List("json", "parquet")
+    if (!fileTypesSupported.contains(fileType)) {
+      sys.error("fileType " + fileType + " not supported. Supported file types are " + fileTypesSupported)
     }
 
     val hadoopFileSystemPath = new Path(path)
